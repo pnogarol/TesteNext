@@ -1,6 +1,8 @@
 package com.test.train.controller;
 
 import com.test.train.dto.StationDto;
+import com.test.train.dto.StationResultsDto;
+import com.test.train.model.Station;
 import com.test.train.service.StationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -19,12 +21,13 @@ public class StationController {
     private StationService statesService;
 
     @GetMapping("/filter/{text}")
-    public ResponseEntity<List<StationDto>> findByStringIn(@PathVariable(value = "text") String text){
+    public ResponseEntity<StationResultsDto> findByStringIn(@PathVariable(value = "text") String text){
         return ResponseEntity.ok(statesService.findByStringIn(text));
     }
 
     @GetMapping
-    public ResponseEntity<List<StationDto>> findAll(){
+    public ResponseEntity<StationResultsDto> findAll(){
         return ResponseEntity.ok(statesService.findAll());
     }
+
 }
